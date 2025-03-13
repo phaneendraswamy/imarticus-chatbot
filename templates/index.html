@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imarticus Learning Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e8f5e9; /* Light green background */
+            color: #333;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end; /* Align to right for floating effect */
+            align-items: flex-end; /* Align to bottom for floating effect */
+            overflow: hidden;
+        }
+        .container {
+            background: #ffffff; /* White container */
+            border: 2px solid #4caf50; /* Green border */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 350px; /* Reduced to typical chatbot width */
+            height: 450px; /* Fixed height for chatbot-like dimension */
+            position: fixed;
+            bottom: 20px;
+            right: 20px; /* Floating position */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        h1 {
+            color: #388e3c; /* Darker green header */
+            font-size: 20px; /* Reduced font size */
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            font-size: 14px; /* Reduced font size */
+            margin-bottom: 10px;
+            color: #666;
+        }
+        #start-form, #chat-container {
+            display: none;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        #start-form.active, #chat-container.active {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #4caf50;
+            border-radius: 5px;
+            background: #f1f8e9; /* Light green input */
+            color: #333;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #4caf50; /* Green button */
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #388e3c; /* Darker green on hover */
+        }
+        #chatbox {
+            border: 1px solid #4caf50;
+            padding: 10px;
+            height: 300px; /* Reduced height */
+            overflow-y: auto;
+            background: #ffffff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: left;
+            flex-grow: 1;
+        }
+        .message {
+            margin: 8px 0;
+            padding: 6px 10px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user {
+            background: #81c784; /* Lighter green for user */
+            color: #fff;
+            margin-left: auto;
+            text-align: right;
+        }
+        .bot {
+            background: #388e3c; /* Darker green for bot */
+            color: #fff;
+            margin-right: auto;
+        }
+        #input-form {
+            display: flex;
+            margin-top: 5px;
+        }
+        #message {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #4caf50;
+            border-radius: 5px 0 0 5px;
+            background: #f1f8e9;
+            color: #333;
+            font-size: 14px;
+        }
+        #input-form button {
+            border-radius: 0 5px 5px 0;
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                height: 400px;
+                bottom: 10px;
+                right: 10px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            #chatbox {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Imarticus Learning Chatbot</h1>
+        <p>Enter your name and mobile number to start chatting!</p>
+
+        <div id="start-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="text" id="mobile" placeholder="Your Mobile Number" required>
+            <button onclick="startChat()">Start Chat</button>
+        </div>
+
+        <div id="chat-container">
+            <div id="chatbox"></div>
+            <form id="input-form" onsubmit="sendMessage(); return false;">
+                <input type="text" id="message" placeholder="Type your message..." autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function startChat() {
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            if (!name || !mobile) {
+                alert('Please enter both name and mobile number!');
+                return;
+            }
+
+            fetch('/start', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `name=${encodeURIComponent(name)}&mobile=${encodeURIComponent(mobile)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('start-form').classList.remove('active');
+                document.getElementById('chat-container').classList.add('active');
+                addMessage('bot', data.response);
+            });
+        }
+
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            if (!message) return;
+
+            addMessage('user', message);
+            document.getElementById('message').value = '';
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `message=${encodeURIComponent(message)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                addMessage('bot', data.response);
+                if (data.end) {
+                    document.getElementById('chat-container').classList.remove('active');
+                    document.getElementById('start-form').classList.add('active');
+                    document.getElementById('name').value = '';
+                    document.getElementById('mobile').value = '';
+                }
+            });
+        }
+
+        function addMessage(sender, text) {
+            const chatbox = document.getElementById('chatbox');
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+            div.textContent = (sender === 'user' ? 'You: ' : 'Chatbot: ') + text;
+            chatbox.appendChild(div);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Show start form on load
+        document.getElementById('start-form').classList.add('active');
+    </script>
+</body>
+</html>

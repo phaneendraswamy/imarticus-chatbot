@@ -1,0 +1,89 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good day", "Hi there"],
+      "responses": ["Hello! Welcome to Imarticus Learning’s Chatbot. How can I assist you today?", "Hi! I’m here to help with your questions about courses like our Postgraduate Program in Data Science!"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "Goodbye", "See you", "Quit", "Exit"],
+      "responses": ["Goodbye! Visit imarticus.org for more info.", "See you later! Good luck with your Data Science journey."]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That’s helpful", "Appreciate it"],
+      "responses": ["You’re welcome!", "Happy to help! Anything else about our programs?"]
+    },
+    {
+      "tag": "courses",
+      "patterns": ["What courses do you offer?", "Tell me about your courses", "What programs are available?", "Course list"],
+      "responses": ["Imarticus offers courses in Data Science, AI, FinTech, Investment Banking, and more. Our Postgraduate Program in Data Science and Analytics is a 6-month course with 25+ projects and job assurance. Want to know more about it or another program?"]
+    },
+    {
+      "tag": "data_science_overview",
+      "patterns": ["Tell me about Data Science program", "What’s the Data Science course?", "Data Science program details", "Overview of Data Science"],
+      "responses": ["The Postgraduate Program in Data Science and Analytics is a 6-month course with classroom and live online training. It offers 10 guaranteed interviews, 25+ projects, and teaches 10+ tools like Excel, SQL, Python, and Tableau in a bootcamp style. Highest salary is 22.5 LPA, with a 52% average hike and 400+ hiring partners. Interested in the curriculum or career benefits?"]
+    },
+    {
+      "tag": "data_science_curriculum",
+      "patterns": ["What’s the curriculum?", "Data Science course content", "What’s taught in Data Science?", "Program syllabus"],
+      "responses": ["The program spans 3 semesters: Semester 1 covers Excel, SQL, Python, Stats; Semester 2 dives into Machine Learning; Semester 3 offers specializations in Advanced ML or Big Data with tools like Tableau, Power BI, Hadoop, and Spark. It includes 25+ projects like Image Classification and E-commerce Segmentation. Want details on a specific module?"]
+    },
+    {
+      "tag": "data_science_tools",
+      "patterns": ["What tools are taught?", "Tools in Data Science program", "Which software is used?"],
+      "responses": ["You’ll master 10+ tools: Excel, SQL, Python (NumPy, Pandas, Matplotlib, Seaborn), Tableau, Power BI, Hadoop, Spark, and more, through hands-on sessions and projects. Which tool are you curious about?"]
+    },
+    {
+      "tag": "data_science_duration",
+      "patterns": ["How long is the Data Science program?", "Program duration", "How many months?"],
+      "responses": ["The Postgraduate Program in Data Science and Analytics is 6 months long, with 3-hour daily sessions (Mon-Fri) via online or classroom modes. Want to know about schedules or batches?"]
+    },
+    {
+      "tag": "admissions",
+      "patterns": ["How do I join?", "What’s the admission process?", "How to apply?", "Eligibility"],
+      "responses": ["Apply online at imarticus.org. For the Data Science program, you typically need a bachelor’s degree; some may require a test. Want specifics on eligibility or the process?"]
+    },
+    {
+      "tag": "fees",
+      "patterns": ["How much are the fees?", "What’s the cost?", "Course fees", "Price"],
+      "responses": ["Fees for the Data Science program vary by mode (online/classroom), typically INR 90,000 to INR 600,000 with EMI options. Visit imarticus.org for exact costs. Need more details?"]
+    },
+    {
+      "tag": "schedules",
+      "patterns": ["When do classes start?", "Course schedule", "Batch timings", "When’s the next batch?"],
+      "responses": ["The Data Science program runs Mon-Fri, 3 hours daily, with multiple batches yearly. Exact start dates are on imarticus.org. Interested in a specific batch?"]
+    },
+    {
+      "tag": "certifications",
+      "patterns": ["What certifications do I get?", "Certificates offered", "Certification details"],
+      "responses": ["For the Data Science program, you’ll earn a Postgraduate Certificate. Scores above 90% get a Certificate of Excellence (Grade A), 75-89% a Certificate of Achievement (B), 50-74% Completion (C), below 50% Participation (D). Passing requires 75%+ attendance and clearing mocks and capstone projects. Want grading details?"]
+    },
+    {
+      "tag": "career_opportunities",
+      "patterns": ["Will this help my career?", "Job opportunities", "Placements", "Career support"],
+      "responses": ["Absolutely! The Data Science program offers 10 guaranteed interviews, a 52% average salary hike, and up to 22.5 LPA with 400+ hiring partners like TCS and HSBC. We provide resume building, mock interviews, and career mentorship. What’s your career goal?"]
+    },
+    {
+      "tag": "projects",
+      "patterns": ["What projects are included?", "Data Science projects", "Hands-on work"],
+      "responses": ["You’ll work on 25+ projects, like Insurance Charges Prediction (Linear Regression), Vaccine Usage Prediction (Logistic Regression), E-commerce Customer Segmentation (K-Means), and Image Classification (CNN). Want to know about a specific project?"]
+    },
+    {
+      "tag": "support",
+      "patterns": ["I need help", "Contact support", "How do I reach you?", "Support info"],
+      "responses": ["Reach out to we.care@imarticus.com or your Training Coordinator. How can I assist you now?"]
+    },
+    {
+      "tag": "locations",
+      "patterns": ["Where are you located?", "Centers in India", "Imarticus locations"],
+      "responses": ["Imarticus has centers in 17 Indian cities like Mumbai, Delhi, Bangalore, plus global locations. Check imarticus.org for details. Where are you based?"]
+    },
+    {
+      "tag": "partnerships",
+      "patterns": ["Who do you partner with?", "Collaborations", "Hiring partners"],
+      "responses": ["We partner with 400+ firms like Goldman Sachs, TCS, and HSBC, plus academic leaders like IITs and IIMs for certifications. Curious about a specific partner?"]
+    }
+  ]
+}
